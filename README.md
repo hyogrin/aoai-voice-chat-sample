@@ -90,7 +90,7 @@ CUSTOM_LANGUAGE=English
 
    To try out the app, click the "Start conversation button", say "Hello", and then ask a question about your data like "What is the X10 series?" "How to use the X10 series?"
 
-
+## 
 
 ## Resources
 
