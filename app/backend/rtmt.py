@@ -218,7 +218,7 @@ class RTMiddleTier:
                         session["input_audio_transcription"] = {
                             "model": self.input_audio_transcription
                         }
-                    if self.default_server_vad_config is not None:
+                    if self.default_vad_config is not None:
                         session["turn_detection"] = self.default_vad_config
                     session["tool_choice"] = "auto" if len(self.tools) > 0 else "none"
                     session["tools"] = [tool.schema for tool in self.tools.values()]
