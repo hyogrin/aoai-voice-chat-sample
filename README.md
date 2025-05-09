@@ -19,7 +19,7 @@ This project is a simplified fork of [VoiceRAG: An Application Pattern for RAG +
 
 The `RTClient` in the frontend receives the audio input, sends that to the Python backend which uses an `RTMiddleTier` object to interface with the Azure OpenAI real-time API, and includes a tool for searching Azure AI Search.
 
-![Diagram of real-time RAG pattern](docs/RTMTPattern.png)
+![Diagram of real-time RAG pattern](images/RTMTPattern.png)
 
 
 ## Getting Started
