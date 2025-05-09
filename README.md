@@ -4,15 +4,16 @@ This project is a simplified fork of [VoiceRAG: An Application Pattern for RAG +
 
 ## Additional Features
 
-* **Transcription History UI**: The application provides a transcription history interface, displaying the conversation history between the user and the voice models.
+* **Transcription History UI**: Provides a transcription history interface that was not included in the original repository. This feature allows you to review the conversation history between the user and the voice models.
+Note: The JSON key values differ between Realtime and Voice Agent; please check this when integrating.
 
-* **Voice Agent Integration**: It integrates with the Azure Voice Agent service to create a voice agent capable of responding to user queries in real-time with human-like speech.
+* **Voice Agent Integration**: When integrating with Azure Voice Agent, please be aware that the endpoint URL and the format of voice messages sent through the WebSocket session differ from the Realtime model. Make sure to verify this in the code.
 
 * **Synthetic data based RAG (Retrieval Augmented Generation)**: The app leverages Azure AI Search to answer questions from a synthetic knowledge base. Retrieved documents are sent to the GPT-4o Realtime API or Voice Agent for response generation.
 
-* **Instruction example for domain specific pronunciation**: The app includes examples demonstrating how to use the instruction feature of the GPT-4o Realtime API to fine-tune the pronunciation of specific words or phrases.
+* **Instruction example for domain specific pronunciation**: Includes examples demonstrating how to use prompt instructions in the GPT-4o Realtime API to fine-tune the pronunciation of specific words or phrases.
 
-* **VAD(Voice Activity Detection) configuration example**: This app includes examples for configuring VAD settings for the GPT-4o Realtime API, allowing control over when the voice agent starts and stops speaking, as well as how to handle silence in the audio stream. VAD configuration for Voice Agent will be available in the next release.
+* **VAD(Voice Activity Detection) configuration example**: This application provides examples for configuring VAD settings with the GPT-4o Realtime API, allowing you to control when the voice agent starts and stops speaking, as well as how to handle silence in the audio stream. Generally, server_vad offers faster response times and lower latency, making it ideal for most real-time voice applications. On the other hand, if natural conversational flow is crucial, semantic_vad provides more accurate detection of when a speaker has finished talking. However, it may result in slower response times. It's recommended to experiment with both options to determine the optimal setting based on your use case. For Voice Agent, VAD settings are configured differently from the Realtime model. I will provide additional guidance once the basic Voice Agent configuration is completed.
 
 
 ### Architecture Diagram
