@@ -1,6 +1,6 @@
 {
     "app": {
-        "title": "Talk to your voice RAG",
+        "title": "Azure voice chatbot sample",
         "footer": "example questions: 1. What is the X10 series? 2. How to use the X10 series?",
         "stopRecording": "Stop recording",
         "startRecording": "Start recording",
