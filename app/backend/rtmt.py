@@ -61,30 +61,15 @@ class RTMiddleTier:
     max_tokens: Optional[int] = None
     disable_audio: Optional[bool] = None
     voice_choice: Optional[str] = None
+    vad_type: str = "server_vad" # or "semantic_vad"
     default_vad_config: Optional[dict[str, Any]] = None
-    # VAD (Voice Activity Detection) configuration
-    vad_config = "server_vad"
-    if vad_config == "server_vad":
-        default_vad_config = default_server_vad_config = {
-            "type": "server_vad",
-            "threshold": 0.5,
-            "prefix_padding_ms": 300,
-            "silence_duration_ms": 500,
-            "create_response": True,
-        }
-    else:
-        default_vad_config = default_sematic_vad_config = {
-            "type": "semantic_vad",
-            "eagerness": "auto", # low, medium, high, auto
-            "create_response": True
-        }
     api_version: str
     input_audio_transcription: str = "whisper-1" # or "gpt-4o-transcribe"
     voice_model_type: str = "aoai_realtime" # or "voice_agent_realtime"
     _tools_pending = {}
     _token_provider = None
 
-    def __init__(self, endpoint: str, deployment: str, credentials: AzureKeyCredential | DefaultAzureCredential, api_version: str, input_audio_transcription:str, voice_choice: Optional[str] = None, voice_model_type: str = "realtime"):
+    def __init__(self, endpoint: str, deployment: str, credentials: AzureKeyCredential | DefaultAzureCredential, api_version: str, input_audio_transcription:str, vad_type:str, voice_choice: Optional[str] = None, voice_model_type: str = "realtime"):
         self.endpoint = endpoint
         self.deployment = deployment
         self.api_version = api_version
@@ -92,6 +77,21 @@ class RTMiddleTier:
         self.voice_choice = voice_choice
         self.voice_model_type = voice_model_type
         self.input_audio_transcription = input_audio_transcription
+        self.vad_type = vad_type
+        if vad_type == "server_vad":
+            self.default_vad_config = {
+                "type": "server_vad",
+                "threshold": 0.5,
+                "prefix_padding_ms": 300,
+                "silence_duration_ms": 500,
+                "create_response": True,
+            }
+        else:
+            self.default_vad_config = {
+                "type": "semantic_vad",
+                "eagerness": "auto", # low, medium, high, auto
+                "create_response": True
+            }
         
         if voice_choice is not None:
             logger.info("Realtime voice choice set to %s", voice_choice)
