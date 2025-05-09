@@ -41,7 +41,7 @@ You can run this app:
 
 1. need to create `app/backend/.env` file with the following environment variables:
 
-   ```shell
+```shell
 ## Voice Model Type
 VOICE_MODEL_TYPE=<choose one: aoai_realtime, voice_agent_realtime>
 
@@ -72,7 +72,7 @@ AZURE_SEARCH_TITLE_FIELD=            # title field in the index that contains th
 AZURE_SEARCH_USE_VECTOR_QUERY=true
 AZURE_SEARCH_SEMANTIC_CONFIGURATION= # Semantic configuration name in the index that contains the semantic settings
 CUSTOM_LANGUAGE=English
-   ```
+```
 
 3. Run this command to start the app:
 
