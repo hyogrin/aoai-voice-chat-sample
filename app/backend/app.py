@@ -41,6 +41,7 @@ async def create_app():
         api_version=os.environ.get("AZURE_OPENAI_API_VERSION") if os.environ.get("VOICE_MODEL_TYPE") == "aoai_realtime" else os.environ.get("AZURE_VOICEAGENT_API_VERSION"),
         voice_choice=os.environ.get("AZURE_OPENAI_REALTIME_VOICE_CHOICE") if os.environ.get("VOICE_MODEL_TYPE") == "aoai_realtime" else os.environ.get("AZURE_VOICEAGENT_VOICE_CHOICE"),
         voice_model_type=os.environ.get("VOICE_MODEL_TYPE") or "aoai_realtime",
+        input_audio_transcription=os.environ.get("INPUT_AUDIO_TRANSCRIPTION"),
         )
     
     rtmt.system_message = """

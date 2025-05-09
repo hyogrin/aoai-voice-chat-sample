@@ -79,17 +79,19 @@ class RTMiddleTier:
             "create_response": True
         }
     api_version: str
+    input_audio_transcription: str = "whisper-1" # or "gpt-4o-transcribe"
     voice_model_type: str = "aoai_realtime" # or "voice_agent_realtime"
     _tools_pending = {}
     _token_provider = None
 
-    def __init__(self, endpoint: str, deployment: str, credentials: AzureKeyCredential | DefaultAzureCredential, api_version: str, voice_choice: Optional[str] = None, voice_model_type: str = "realtime"):
+    def __init__(self, endpoint: str, deployment: str, credentials: AzureKeyCredential | DefaultAzureCredential, api_version: str, input_audio_transcription:str, voice_choice: Optional[str] = None, voice_model_type: str = "realtime"):
         self.endpoint = endpoint
         self.deployment = deployment
         self.api_version = api_version
         print("RTMiddleTier: api_version: ", self.api_version)
         self.voice_choice = voice_choice
         self.voice_model_type = voice_model_type
+        self.input_audio_transcription = input_audio_transcription
         
         if voice_choice is not None:
             logger.info("Realtime voice choice set to %s", voice_choice)
@@ -119,6 +121,10 @@ class RTMiddleTier:
                             "type": "azure-standard"
                         }
                     session["tool_choice"] = "none"
+                    session["input_audio_transcription"] = {
+                        "model": self.input_audio_transcription
+                    }
+                    session["turn_detection"] = self.default_vad_config
                     session["max_response_output_tokens"] = None
                     updated_message = json.dumps(message)
 
@@ -208,11 +214,16 @@ class RTMiddleTier:
                             "name": self.voice_choice,
                             "type": "azure-standard"
                         }
+                    if self.input_audio_transcription is not None:
+                        session["input_audio_transcription"] = {
+                            "model": self.input_audio_transcription
+                        }
                     if self.default_server_vad_config is not None:
                         session["turn_detection"] = self.default_vad_config
                     session["tool_choice"] = "auto" if len(self.tools) > 0 else "none"
                     session["tools"] = [tool.schema for tool in self.tools.values()]
                     updated_message = json.dumps(message)
+                    
 
         return updated_message
 

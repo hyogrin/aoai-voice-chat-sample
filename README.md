@@ -15,6 +15,7 @@ Note: The JSON key values differ between Realtime and Voice Agent; please check 
 
 * **VAD(Voice Activity Detection) configuration example**: This application provides examples for configuring VAD settings with the GPT-4o Realtime API, allowing you to control when the voice agent starts and stops speaking, as well as how to handle silence in the audio stream. Generally, server_vad offers faster response times and lower latency, making it ideal for most real-time voice applications. On the other hand, if natural conversational flow is crucial, semantic_vad provides more accurate detection of when a speaker has finished talking. However, it may result in slower response times. It's recommended to experiment with both options to determine the optimal setting based on your use case. For Voice Agent, VAD settings are configured differently from the Realtime model. I will provide additional guidance once the basic Voice Agent configuration is completed.
 
+* **input_audio_transcription Configuration**: Includes configuration options for different input audio transcription models. The app supports both whisper-1 and gpt-4o-mini-transcribe for transcribing audio input. 
 
 ### Architecture Diagram
 
@@ -62,6 +63,7 @@ AZURE_OPENAI_EMBEDDING_DEPLOYMENT=text-embedding-3-small
 AZURE_OPENAI_EMBEDDING_MODEL=text-embedding-3-small
 AZURE_OPENAI_CHAT_DEPLOYMENT=gpt-4o-mini
 AZURE_OPENAI_API_VERSION=2025-04-01-preview
+INPUT_AUDIO_TRANSCRIPTION=<choose one: whisper-1, gpt-4o-mini-transcribe>
 
 ## Azure AI Search
 AZURE_SEARCH_ENDPOINT=
