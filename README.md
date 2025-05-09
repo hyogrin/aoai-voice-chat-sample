@@ -1,1 +1,1 @@
-# aoai_voice_chat_sample
+# aoai-voice-chat-sample
