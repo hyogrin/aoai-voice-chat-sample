@@ -1,0 +1,30 @@
+[project]
+name = "aoai-voice-chat-sample"
+version = "0.1.0"
+description = "Sample app (dependencies managed with uv)"
+readme = "README.md"
+requires-python = ">=3.12"
+dependencies = [
+  "openai>=2.11.0",
+  "aiohttp==3.9.3",
+  "pandas==2.3.2",
+  "tiktoken==0.12.0",
+  "tenacity==9.0.0",
+  "azure-identity==1.18.0",
+  "azure-search-documents==11.6.0b7",
+  "python-dotenv==1.0.1",
+  "azure-storage-blob==12.23.1",
+  "gunicorn",
+  "rich",
+]
+
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
+[tool.setuptools]
+# This repository is used as an application (run via `uv run ...`), not as a
+# distributable Python package. Disable automatic discovery to avoid picking up
+# unrelated top-level directories (e.g. `app/`, `ai_search/`, `images/`).
+packages = []
+include-package-data = false

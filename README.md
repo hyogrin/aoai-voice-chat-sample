@@ -96,10 +96,17 @@ The `RTClient` in the frontend receives the audio input, sends that to the Pytho
 1. Install the required tools:
    * [Azure Developer CLI](https://aka.ms/azure-dev/install)
    * [Node.js](https://nodejs.org/)
-   * [Python >=3.11](https://www.python.org/downloads/)
+    * [Python >=3.12](https://www.python.org/downloads/)
       * **Important**: Python and the pip package manager must be in the path in Windows for the setup scripts to work.
       * **Important**: Ensure you can run `python --version` from console. On Ubuntu, you might need to run `sudo apt install python-is-python3` to link `python` to `python3`.
+    * [uv](https://github.com/astral-sh/uv) (recommended for Python dependency management)
    * [Git](https://git-scm.com/downloads)
+
+2. Install Python dependencies (recommended):
+
+    ```bash
+    uv sync --no-install-project
+    ```
 
 
 ## Development server
@@ -151,6 +158,12 @@ CUSTOM_LANGUAGE=English
    ```bash
    ./scripts/start.sh
    ```
+
+    Or, to start only the backend (useful during development):
+
+    ```bash
+    uv run python app/backend/app.py
+    ```
 
 4. The app is available on [http://localhost:8765](http://localhost:8765).
 
